@@ -8,26 +8,26 @@ uniform vec3 theta;
 void main() {
   fColor = vColor;
   vec3 angle = radians(theta);
-  vec3 s = sin(angle);
-  vec3 c = cos(angle);
+  vec3 sinD = sin(angle);
+  vec3 cosD = cos(angle);
   
   mat4 rx = mat4(
     1.0, 0.0, 0.0, 0.0,
-    0.0, c.x, s.x, 0.0,
-    0.0, -s.x, c.x, 0.0,
+    0.0, cosD.x, sinD.x, 0.0,
+    0.0, -sinD.x, cosD.x, 0.0,
     0.0, 0.0, 0.0, 1.0
   );
 
   mat4 ry = mat4(
-    c.y, 0.0, -s.y, 0.0,
+    cosD.y, 0.0, -sinD.y, 0.0,
     0.0, 1.0, 0.0, 0.0,
-    s.y, 0.0, c.y, 0.0,
+    sinD.y, 0.0, cosD.y, 0.0,
     0.0, 0.0, 0.0, 1.0
   );
 
   mat4 rz = mat4(
-    c.z, s.z, 0.0, 0.0,
-    -s.z, c.z, 0.0, 0.0,
+    cosD.z, sinD.z, 0.0, 0.0,
+    -sinD.z, cosD.z, 0.0, 0.0,
     0.0, 0.0, 1.0, 0.0,
     0.0, 0.0, 0.0, 1.0
   );

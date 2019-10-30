@@ -9,13 +9,13 @@ uniform vec3 trans1;
 void main() {
   fColor = vColor;
   vec3 angle = radians(theta1);
-  vec3 s = sin(angle);
-  vec3 c = cos(angle);
+  vec3 sinD = sin(angle);
+  vec3 cosD = cos(angle);
 
   mat4 ry = mat4(
-    c.y, 0.0, -s.y, 0.0,
+    cosD.y, 0.0, -sinD.y, 0.0,
     0.0, 1.0, 0.0, 0.0,
-    s.y, 0.0, c.y, 0.0,
+    sinD.y, 0.0, cosD.y, 0.0,
     0.0, 0.0, 0.0, 1.0
   );
    
