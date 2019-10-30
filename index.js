@@ -13,132 +13,52 @@
     gl = glUtils.checkWebGL(canvas);
 
     // Initialize the shaders and program
-    var vertexShader = glUtils.getShader(gl, gl.VERTEX_SHADER, glUtils.SL.Shaders.v1.vertex),
-        vertexShader2 = glUtils.getShader(gl, gl.VERTEX_SHADER, glUtils.SL.Shaders.v2.vertex),
+    // var vertexShader = glUtils.getShader(gl, gl.VERTEX_SHADER, glUtils.SL.Shaders.v1.vertex),
+      var vertexShader2 = glUtils.getShader(gl, gl.VERTEX_SHADER, glUtils.SL.Shaders.v2.vertex),
+        vertexShader3 = glUtils.getShader(gl, gl.VERTEX_SHADER, glUtils.SL.Shaders.v3.vertex),
         fragmentShader = glUtils.getShader(gl, gl.FRAGMENT_SHADER, glUtils.SL.Shaders.v1.fragment);
 
-   program = glUtils.createProgram(gl, vertexShader, fragmentShader);
+  //  program = glUtils.createProgram(gl, vertexShader, fragmentShader);
    program2 = glUtils.createProgram(gl, vertexShader2, fragmentShader);
+   program3 = glUtils.createProgram(gl, vertexShader3, fragmentShader);
 
 
-
-    
-    resizer();
+  resizer();
   
 
   // draw!
 
-    //huruf b full garis
-    // var pointsVertices = new Float32Array([
-    //   -0.5, -0.5
-    // ]);
-    // var linesVertices1 = new Float32Array([ // bagian dalam
-    //   -0.9, -0.5,   0.1765, 0.8157, 0.9255,
-    //   -0.9 , 0.5,   0.1765, 0.8157, 0.9255,
-    //   -0.9, -0.5,   0.1765, 0.8157, 0.9255,
-    //   -0.73,-0.2,   0.1765, 0.8157, 0.9255,
-    //   -0.73, -0.2,  0.1765, 0.8157, 0.9255,
-    //   -0.86,  0.0,  0.1765, 0.8157, 0.9255,
-    //   -0.86,  0.0,  0.1765, 0.8157, 0.9255,
-    //   -0.73, 0.2,   0.1765, 0.8157, 0.9255,
-    //   -0.73, 0.2,   0.1765, 0.8157, 0.9255,
-    //   -0.9 , 0.5,   0.1765, 0.8157, 0.9255
-      
-    // ]);
-    
-    // var linesVertices2 = new Float32Array([ //bagian luar
-    //   -0.95, -0.67,   0.1765, 0.8157, 0.9255,
-    //   -0.95 , 0.67,   0.1765, 0.8157, 0.9255,
-    //   -0.95, -0.67,   0.1765, 0.8157, 0.9255,
-    //   -0.66,-0.20,    0.1765, 0.8157, 0.9255,
-    //   -0.66, -0.20,   0.1765, 0.8157, 0.9255,
-    //   -0.78,  0.0,    0.1765, 0.8157, 0.9255,
-    //   -0.78,  0.0,    0.1765, 0.8157, 0.9255,
-    //   -0.65, +0.2,    0.1765, 0.8157, 0.9255,
-    //   -0.65, +0.2,    0.1765, 0.8157, 0.9255,
-    //   -0.95, 0.67,    0.1765, 0.8157, 0.9255
-    // ]);
-
-
-    var vertices1 = [],
-    vertices2 = [],
-    vertices3 = [],
-    vertices4 = [];
-    //kosongan
-    for (var x=0.0; x<=180; x+=1) {
-      // degrees to radians
-      var z = x * Math.PI / 180;
-      var vert1 = [
-        -0.85 + Math.sin(z)*0.1,
-        -0.1 + Math.cos(z)*0.15,
-        0.1765, 0.8157, 0.9255
-      ];
-
-      vertices1 = vertices1.concat(vert1);
-    }
-
-    var linesVertices3 = new Float32Array([ //bagian luar
-      -0.90, 0.45,    0.1765, 0.8157, 0.9255,
-      -0.90, 0.15,    0.1765, 0.8157, 0.9255,
-      -0.90, 0.45,    0.1765, 0.8157, 0.9255,
-      -0.85, 0.45,    0.1765, 0.8157, 0.9255,
-      -0.90, 0.15,    0.1765, 0.8157, 0.9255,
-      -0.85, 0.15,    0.1765, 0.8157, 0.9255,
-
-      -0.90, 0.05,    0.1765, 0.8157, 0.9255,
-      -0.90, -0.25,   0.1765, 0.8157, 0.9255,
-      -0.90, 0.05,    0.1765, 0.8157, 0.9255,
-      -0.85, 0.05,    0.1765, 0.8157, 0.9255,
-      -0.90, -0.25,   0.1765, 0.8157, 0.9255,
-      -0.85, -0.25,   0.1765, 0.8157, 0.9255
-    ]);
-
-    
-    for (var x=0.0; x<=180; x+=1) {
-      // degrees to radians
-      var z = x * Math.PI / 180;
-
-      var vert2 = [
-        -0.85 + Math.sin(z)*0.1,
-        0.3 + Math.cos(z)*0.15,
-        0.1765, 0.8157, 0.9255
-      ];
-      vertices2 = vertices2.concat(vert2);
-    }
-
-    for (var x=0.0; x<=144; x+=1) {
-      // degrees to radians
-      var z = x * Math.PI / 180;
-
-      var vert3 = [
-        -0.85 + Math.sin(z)*0.2,
-        0.3 + Math.cos(z)*0.25,
-        0.1765, 0.8157, 0.9255
-      ];
-      vertices3 = vertices3.concat(vert3);
-    }
-
-    var linesVertices4 = new Float32Array([ //bagian luar
-      -0.95,-0.35,   0.1765, 0.8157, 0.9255,
-      -0.95, 0.55,   0.1765, 0.8157, 0.9255,
-      -0.95, 0.55,   0.1765, 0.8157, 0.9255,
-      -0.84, 0.55,  0.1765, 0.8157, 0.9255,
-      -0.95 ,-0.35,  0.1765, 0.8157, 0.9255,
-      -0.84, -0.35, 0.1765, 0.8157, 0.9255      
-    ]);
-
-    for (var x=36.0; x<=180; x+=1) {
-      // degrees to radians
-      var z = x * Math.PI / 180;
-
-      var vert4 = [
-        -0.85 + Math.sin(z)*0.2,
-       -0.1 + Math.cos(z)*0.25,
-        0.1765, 0.8157, 0.9255
-      ];
-      vertices4 = vertices4.concat(vert4);
-    }
-
+  //kubus
+  var kubus= ([
+    //BAWAH
+    -0.3,  -0.8,  0.7,      255, 255, 255,          
+    0.4,  -0.8,  0.7,       255, 255, 255,          
+    0.4,  -0.8,  0.7,       255, 255, 255,          
+    0.4,  -0.8,  -0.6,      255, 255, 255,          
+    0.4,  -0.8,  -0.6,      255, 255, 255,          
+    -0.3,  -0.8,  -0.6,     255, 255, 255,          
+    -0.3,  -0.8,  -0.6,     255, 255, 255,          
+    -0.3,  -0.8,  0.7,      255, 255, 255,          
+    //ATAS
+    -0.3,  0.6,  0.7,       255,255, 255,          
+    0.4,  0.6,  0.7,        255,255, 255,       
+    0.4,  0.6,  0.7,        255,255, 255,         
+    0.4,  0.6,  -0.6,      255,255, 255,          
+    0.4,  0.6,  -0.6,       255,255, 255,          
+    -0.3,  0.6,  -0.6,      255,255, 255,          
+    -0.3,  0.6,  -0.6,      255,255, 255,          
+    -0.3,  0.6,  0.7,       255,255, 255,          
+    //BELAKANG
+    -0.3,  -0.8,  0.7,      255,255, 255,            
+    -0.3,  0.6,  0.7,       255,255, 255,           
+    0.4,  -0.8,  0.7,      255,255, 255,            
+    0.4,  0.6,  0.7,        255,255, 255,            
+    //DEPAN
+    0.4,  -0.8,  -0.6,      255,255, 255,            
+    0.4,  0.6,  -0.6,       255,255, 255,           
+    -0.3,  -0.8,  -0.6,     255,255, 255,            
+    -0.3,  0.6,  -0.6,      255,255, 255      
+  ]);
     var vertices5 = [],
     vertices6 = [],
     vertices7 = [],
@@ -248,35 +168,14 @@
       0.50, -0.25,    0.0078, 0.2078, 0.3922
     ])
 
-
-
-
-    //huruf b dengan isian
-    // drawCircle(gl.LINE_STRIP, vertices5);//dalam
-    // drawCircle(gl.LINE_STRIP, vertices6);//dalam
-
-    // drawA(gl.TRIANGLE_STRIP, isian1);//samping
-
-    // drawA(gl.TRIANGLE_STRIP, isiatas);
-    // drawA(gl.TRIANGLE_STRIP, isitengah);
-    // drawA(gl.TRIANGLE_STRIP, isibawah);
-
-    // drawCircle(gl.TRIANGLE_STRIP, vertices7);
-    // drawCircle(gl.TRIANGLE_STRIP, vertices8);
-    // drawA(gl.LINES, linesVertices6);
-    // drawA(gl.LINES, linesVertices7);
-    // drawA(gl.LINES, linesVertices3);
-    // drawA(gl.LINES, linesVertices4);
   
-  
-    
   function drawShapes(type,vertices,n) {
     
     var vertexBufferObject = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBufferObject);
   
-  var vPosition = gl.getAttribLocation(program, 'vPosition');
-  var vColor = gl.getAttribLocation(program, 'vColor');
+    var vPosition = gl.getAttribLocation(program, 'vPosition');
+    var vColor = gl.getAttribLocation(program, 'vColor');
   gl.vertexAttribPointer(
     vPosition, //variabel pemegang posisi atribut di shader
     2,          // jumlah elemen per atribut
@@ -302,26 +201,6 @@
   gl.drawArrays(type, 0, n);
   }
 
-  var thetaLocation = gl.getUniformLocation(program, 'theta');
-  var theta = 0.0;
-
-  function render() {
-    gl.useProgram(program);
-    gl.clearColor(0.0, 0.0, 0.0, 1.0);
-    gl.clear(gl.COLOR_BUFFER_BIT);
-
-    theta +=0.0099;
-    gl.uniform1f(thetaLocation,theta);
-  //huruf b dengan lingkaran
-
-  drawShapes(gl.LINES, linesVertices3,12);
-  drawShapes(gl.LINES, linesVertices4,6);
-  drawShapes(gl.LINE_STRIP, vertices1,181);//dalam bawah
-  drawShapes(gl.LINE_STRIP, vertices2,181);//dalam atas
-  drawShapes(gl.LINE_STRIP, vertices3,145);//luar atas
-  drawShapes(gl.LINE_STRIP, vertices4,144);//luarbawah
-  requestAnimationFrame(render);
-  }
   
 
 
@@ -358,20 +237,38 @@
   gl.drawArrays(type, 0, n);
   }
 
-  var scaleXLocation = gl.getUniformLocation(program2, 'scaleX');
-  // var scaleYLocation = gl.getUniformLocation(program2, 'scaleY');
-  var scaleX = 1.0;
-  // var scaleY = 1.0;
-  var melebar = 1;  
+  var thetaLoc1 = gl.getUniformLocation(program2, 'theta1'); 
+  var transLoc1 = gl.getUniformLocation(program2, 'trans1');
+  var thetaA1 = [10, 20, 0];
+  var trans1 = [0, 0, 0]; 
+  var X1 = 0.0080;
+  var Y1 = 0.0090;
+  var Z1 = 0.0130;
 
 function render2(){
 
-  gl.useProgram(program2);
+    gl.useProgram(program2);
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.clear(gl.COLOR_BUFFER_BIT);
+  
+    if(trans1[0] >= 0.4*0.8 || trans1[0] <= -0.3*0.8 ){
+      X1 *= -1;
+    }
+    trans1[0] += X1;
 
-  if (scaleX >= 1) melebar = -1;
-  else if (scaleX <= -1) melebar = 1; 
-  scaleX += 0.0099 * melebar;
-  gl.uniform1f(scaleXLocation, scaleX);
+    if(trans1[1] >= 0.6*0.8 || trans1[1] <= -0.8*0.8 ){
+      Y1 *= -1;
+    }
+    trans1[1] += Y1;
+
+    if(trans1[2] >= 0.7*0.8 || trans1[2] <= -0.6*0.8){
+      Z1 *= -1;
+    }
+    trans1[2] += Z1;
+
+    gl.uniform3fv(transLoc1, trans1);
+    thetaA1[1] += 0.149;
+    gl.uniform3fv(thetaLoc1, thetaA1);  
   // gl.uniform1f(scaleYLocation, scaleY);
 
     //huruf b dengan isian
@@ -394,8 +291,56 @@ function render2(){
   requestAnimationFrame(render2);
 
 } 
-  render();
+
+function drawShapes3(type,vertices,n) {
+  var vertexBufferObject = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, vertexBufferObject);
+
+  var vPosition = gl.getAttribLocation(program3, 'vPosition');
+  var vColor = gl.getAttribLocation(program3, 'vColor');
+
+  gl.vertexAttribPointer(
+    vPosition, //variabel pemegang posisi atribut di shader
+    3,          // jumlah elemen per atribut
+    gl.FLOAT,   // tipe data atribut
+    gl.FALSE,   
+    6 * Float32Array.BYTES_PER_ELEMENT, // ukuran byte tiap vertex
+    0
+  );
+
+  gl.vertexAttribPointer(
+    vColor, 
+    3, 
+    gl.FLOAT, 
+    gl.FALSE, 
+    6 * Float32Array.BYTES_PER_ELEMENT, 
+    3 * Float32Array.BYTES_PER_ELEMENT
+  );
+  gl.enableVertexAttribArray(vPosition);
+  gl.enableVertexAttribArray(vColor);
+
+  var vPosition = gl.getAttribLocation(program3, 'vPosition');
+  var vColor = gl.getAttribLocation(program3, 'vColor');
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+  gl.drawArrays(type, 0, n);
+}
+
+var thetaLocCube = gl.getUniformLocation(program3, 'theta');
+
+
+function render3()
+{
+
+  gl.useProgram(program3);
+  var thetaCube = [10, 10, 0];
+  gl.uniform3fv(thetaLocCube, thetaCube);
+  drawShapes3(gl.LINES, kubus , 24);
+
+  requestAnimationFrame(render3);
+}
+  // render();
   render2();
+  render3();
 
 
 }

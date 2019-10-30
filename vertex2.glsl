@@ -2,17 +2,37 @@ precision mediump float;
 attribute vec2 vPosition;
 attribute vec3 vColor;
 varying vec3 fColor;
-uniform float scaleX;
+uniform vec3 theta1;
+uniform vec3 trans1;
+
 
 void main() {
-  fColor = vColor; 
-  // vec2 TransformedPos  = vec2(vPosition.x - 0.5, vPosition.y + 0.5); 
+  fColor = vColor;
+  vec3 angle = radians(theta1);
+  vec3 sinD = sin(angle);
+  vec3 cosD = cos(angle);
 
-  mat4 ScaleM = mat4(
-      scaleX, 0.0, 0.0, 0.0,
-      0.0, 1.0, 0.0, 0.0,
-      0.0, 0.0, 1, 0.0,
-      0.0, 0.0, 0.0, 1.0
+  mat4 ry = mat4(
+    cosD.y, 0.0, -sinD.y, 0.0,
+    0.0, 1.0, 0.0, 0.0,
+    sinD.y, 0.0, cosD.y, 0.0,
+    0.0, 0.0, 0.0, 1.0
   );
-  gl_Position = (vec4(vPosition, 0.0, 1.0)-vec4(0.5,0,0,0)) * ScaleM +vec4(0.7,0,0,0);
+   
+  mat4 translasi = mat4(
+    1.0, 0.0, 0.0, trans1.x,
+    0.0, 1.0, 0.0, trans1.y,
+    0.0, 0.0, 1.0, trans1.z,
+    0.0, 0.0, 0.0, 1.0
+  );
+
+  mat4 skalasi = mat4(
+    0.3, 0.0, 0.0, 0.0,
+    0.0, 0.3, 0.0, 0.0,
+    0.0, 0.0, 1.0, 0.0,
+    0.0, 0.0, 0.0, 1.0
+  );
+
+  gl_Position = vec4(vPosition, 0.0, 1.0) * skalasi * ry;
+  gl_Position *=  translasi;
 }
