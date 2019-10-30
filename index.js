@@ -267,7 +267,7 @@ function render2(){
     trans1[2] += Z1;
 
     gl.uniform3fv(transLoc1, trans1);
-    thetaA1[1] += 0.149;
+    thetaA1[1] += 0.99;
     gl.uniform3fv(thetaLoc1, thetaA1);  
   // gl.uniform1f(scaleYLocation, scaleY);
 
